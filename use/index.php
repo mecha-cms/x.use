@@ -9,7 +9,9 @@ $out .= '<meta name="viewport" content="width=device-width">';
 $out .= '<meta charset="utf-8">';
 $out .= '<title>Dependency Inspector</title>';
 $out .= '<link href="' . $url . '/favicon.ico" rel="shortcut icon">';
-$out .= '<style>*{margin:0;padding:0;list-style:none;font:inherit}:focus{outline:0}html{border-top:4px solid;background:#fff;color:#000;font:normal normal 13px/1.25 sans-serif}body{padding:2em}a{color:inherit;text-decoration:none}h1,h2,h3,h4,h5,h6{line-height:1}*+p,*+ul{margin-top:1em}h1{font-size:180%}h1+p{font-size:110%}h1+p a{color:#00f}details{display:block;padding:1em;margin:0 -1em;border-bottom:1px solid #eee}details:target{background:#ffa}h1+p+details{border-top:1px solid #eee;margin-top:1em}summary{display:block;font-size:140%;overflow:hidden;cursor:pointer}summary b{color:#999;float:right}ul{color:#7f7f7f}.error{color:#ed1c24}.info{color:#00a2e8}.success{color:#22b14c}</style>';
+$out .= '<style>';
+$out .= '*{margin:0;padding:0;list-style:none;font:inherit}:focus{outline:0}html{border-top:4px solid;background:#fff;color:#000;font:normal normal 13px/1.25 sans-serif}body{padding:2em}a{color:inherit;text-decoration:none}h1,h2,h3,h4,h5,h6{line-height:1}*+p,*+ul{margin-top:1em}h1{font-size:180%}h1+p{font-size:110%}h1+p a{color:#00f}details{display:block;padding:1em;margin:0 -1em;border-bottom:1px solid #eee}details:target{background:#ffa}h1+p+details{border-top:1px solid #eee;margin-top:1em}summary{display:block;font-size:140%;overflow:hidden;cursor:pointer}summary b{color:#999;float:right}ul{color:#7f7f7f}.error{color:#ed1c24}.info{color:#00a2e8}.success{color:#22b14c}';
+$out .= '</style>';
 $out .= '</head>';
 $out .= '<body>';
 
