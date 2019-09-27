@@ -15,7 +15,7 @@ $out .= '</style>';
 $out .= '</head>';
 $out .= '<body>';
 
-$markdown = state('markdown') !== null;
+$markdown = State::get('x.markdown') !== null;
 $count = 0;
 $error = 0;
 
