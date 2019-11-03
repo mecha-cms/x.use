@@ -15,7 +15,7 @@ $out .= '</style>';
 $out .= '</head>';
 $out .= '<body>';
 
-$markdown = State::get('x.markdown') !== null;
+$markdown = null !== State::get('x.markdown');
 $count = 0;
 $error = 0;
 
@@ -29,15 +29,15 @@ foreach (glob(__DIR__ . DS . '..' . DS . '*' . DS . 'about.page', GLOB_NOSORT) a
     $header = "";
     foreach (stream($about) as $k => $v) {
         // No header marker means no property at all
-        if ($k === 0 && $v !== '---') {
+        if (0 === $k && '---' !== $v) {
             break;
         }
         // Skip header marker!
-        if ($k === 0 && $v === '---') {
+        if (0 === $k && '---' === $v) {
             continue;
         }
         // End header marker means no `use` property found
-        if ($v === '...') {
+        if ('...' === $v) {
             break;
         }
         $header .= "\n" . $v;
@@ -61,7 +61,7 @@ foreach (glob(__DIR__ . DS . '..' . DS . '*' . DS . 'about.page', GLOB_NOSORT) a
             $r .= '<li>';
             $r .= '<a href="#x:' . basename($k) . '">';
             $r .= $k;
-            if ($v === 0) {
+            if (0 === $v) {
                 $r .= ' <span class="info">&#x2981;</span>';
             } else {
                 if (is_file(ROOT . strtr(substr($k, 1), '\\', DS) . DS . 'index.php')) {
@@ -82,7 +82,7 @@ foreach (glob(__DIR__ . DS . '..' . DS . '*' . DS . 'about.page', GLOB_NOSORT) a
 }
 
 $out .= '<h1>' . i('Dependency Inspector') . '</h1>';
-$out .= '<p class="error">' . i('%d extension' . ($i === 1 ? "" : 's') . ' installed.', $count) . ' ' . i('Found %d error' . ($error === 1 ? "" : 's') . '.', $error) . ' <a href="https://mecha-cms.com/reference/extension" target="_blank">' . i('Search for missing extensions') . '&#x2026;</a></p>';
+$out .= '<p class="error">' . i('%d extension' . (1 === $i ? "" : 's') . ' installed.', $count) . ' ' . i('Found %d error' . (1 === $error ? "" : 's') . '.', $error) . ' <a href="https://mecha-cms.com/reference/extension" target="_blank">' . i('Search for missing extensions') . '&#x2026;</a></p>';
 $out .= $r;
 $out .= '</body>';
 $out .= '</html>';
