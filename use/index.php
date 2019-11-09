@@ -88,7 +88,7 @@ $out .= '</body>';
 $out .= '</html>';
 
 if ($error > 0) {
-    Hook::let('start');
+    Hook::let('get');
     http_response_code(200);
     echo $out;
     exit;
