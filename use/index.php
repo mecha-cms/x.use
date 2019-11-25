@@ -28,6 +28,7 @@ foreach (glob(__DIR__ . DS . '..' . DS . '*' . DS . 'about.page', GLOB_NOSORT) a
     ++$count;
     $header = "";
     foreach (stream($about) as $k => $v) {
+        $v = trim($v, "\n");
         // No header marker means no property at all
         if (0 === $k && '---' !== $v) {
             break;
@@ -49,7 +50,7 @@ foreach (glob(__DIR__ . DS . '..' . DS . '*' . DS . 'about.page', GLOB_NOSORT) a
     $r .= $id . ' <b>';
     if (!empty($data['title'])) {
         if ($markdown) {
-            $r .= str_replace(['<p>', '</p>'], "", (new Parsedown)->text($data['title']));
+            $r .= (new Parsedown)->line($data['title']);
         } else {
             $r .= $data['title'];
         }
@@ -63,13 +64,16 @@ foreach (glob(__DIR__ . DS . '..' . DS . '*' . DS . 'about.page', GLOB_NOSORT) a
             $r .= $k;
             if (0 === $v) {
                 $r .= ' <span class="info">&#x2981;</span>';
-            } else {
+            } else if (1 === $v) {
                 if (is_file(ROOT . strtr(substr($k, 1), '\\', DS) . DS . 'index.php')) {
                     $r .= ' <span class="success">&#x2714;</span>';
                 } else {
                     $r .= ' <span class="error">&#x2718;</span>';
                     ++$error;
                 }
+            } else if (is_string($v)) {
+                preg_match('/^([!=<>]+)(.*)/', $v, $m);
+                // TODO
             }
             $r .= '</a>';
             $r .= '</li>';
@@ -82,7 +86,7 @@ foreach (glob(__DIR__ . DS . '..' . DS . '*' . DS . 'about.page', GLOB_NOSORT) a
 }
 
 $out .= '<h1>' . i('Dependency Inspector') . '</h1>';
-$out .= '<p class="error">' . i('%d extension' . (1 === $i ? "" : 's') . ' installed.', $count) . ' ' . i('Found %d error' . (1 === $error ? "" : 's') . '.', $error) . ' <a href="https://mecha-cms.com/reference/extension" target="_blank">' . i('Search for missing extensions') . '&#x2026;</a></p>';
+$out .= '<p class="error">' . i('%d extension' . (1 === $i ? "" : 's') . ' installed.', $count) . ' ' . i('Found %d error' . (1 === $error ? "" : 's') . '.', $error) . ' <a href="https://mecha-cms.com/store" target="_blank">' . i('Search for missing extensions') . '&#x2026;</a></p>';
 $out .= $r;
 $out .= '</body>';
 $out .= '</html>';
