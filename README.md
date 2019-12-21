@@ -1,6 +1,9 @@
 Dependency Inspector for Mecha
 ==============================
 
-> Check for missing dependency.
+Release Notes
+-------------
 
-Just put the `use` folder with its contents to `.\lot\x` folder in your site.
+### 1.0.1
+
+ - Initial release.

@@ -28,17 +28,16 @@ foreach (glob(__DIR__ . DS . '..' . DS . '*' . DS . 'about.page', GLOB_NOSORT) a
     ++$count;
     $header = "";
     foreach (stream($about) as $k => $v) {
-        $v = trim($v, "\n");
         // No header marker means no property at all
-        if (0 === $k && '---' !== $v) {
+        if (0 === $k && "---\n" !== $v) {
             break;
         }
         // Skip header marker!
-        if (0 === $k && '---' === $v) {
+        if (0 === $k && "---\n" === $v) {
             continue;
         }
         // End header marker means no `use` property found
-        if ('...' === $v) {
+        if ("...\n" === $v) {
             break;
         }
         $header .= "\n" . $v;
