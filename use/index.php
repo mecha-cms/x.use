@@ -27,19 +27,19 @@ foreach (glob(__DIR__ . DS . '..' . DS . '*' . DS . 'about.page', GLOB_NOSORT) a
     }
     ++$count;
     $header = "";
-    $soh = defined("YAML\\SOH") ? YAML\SOH : '---';
-    $eot = defined("YAML\\EOT") ? YAML\EOT : '...';
+    $start = defined("YAML\\SOH") ? YAML\SOH : '---';
+    $end = defined("YAML\\EOT") ? YAML\EOT : '...';
     foreach (stream($about) as $k => $v) {
         // No header marker means no property at all
-        if (0 === $k && $soh . "\n" !== $v) {
+        if (0 === $k && $start . "\n" !== $v) {
             break;
         }
         // Skip header marker!
-        if (0 === $k && $soh . "\n" === $v) {
+        if (0 === $k && $start . "\n" === $v) {
             continue;
         }
         // End header marker means no `use` property found
-        if ($eot . "\n" === $v) {
+        if ($end . "\n" === $v) {
             break;
         }
         $header .= "\n" . $v;
