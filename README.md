@@ -1,5 +1,5 @@
-Dependency Inspector for Mecha
-==============================
+Dependency Inspector for [Mecha](https://github.com/mecha-cms/mecha)
+====================================================================
 
 Release Notes
 -------------
